@@ -19,13 +19,14 @@ const App = () => {
   };
 
   const removeTodoHandler = (todoId: string) => {
+    console.log(111, todoId);
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== todoId));
   };
 
   return (
     <div>
       <NewTodo onAddTodo={addTodoHandler} />
-      <Todos items={todos} onRemoveTodo={() => removeTodoHandler}>
+      <Todos items={todos} onRemoveTodo={removeTodoHandler}>
         Prueba de hijos...
       </Todos>
     </div>
