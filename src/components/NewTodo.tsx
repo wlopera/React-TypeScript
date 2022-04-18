@@ -1,7 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
+import { TodosContext } from "../store/todos-context";
 
-const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
+import classes from "./NewTodo.module.css";
+
+const NewTodo: React.FC = () => {
   const todoTextInputRef = useRef<HTMLInputElement>(null);
+  const todosCtx = useContext(TodosContext);
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
@@ -13,11 +17,11 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
       return;
     }
 
-    props.onAddTodo(enteredText);
+    todosCtx.addTodo(enteredText);
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={classes.form}>
       <label htmlFor="text">Texto:</label>
       <input type="text" id="tetx" ref={todoTextInputRef} />
       <button>Agregar</button>
