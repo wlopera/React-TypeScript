@@ -18,10 +18,16 @@ const App = () => {
     setTodos((prevTodos) => prevTodos.concat(newTodo));
   };
 
+  const removeTodoHandler = (todoId: string) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== todoId));
+  };
+
   return (
     <div>
       <NewTodo onAddTodo={addTodoHandler} />
-      <Todos items={todos}>Prueba de hijos...</Todos>
+      <Todos items={todos} onRemoveTodo={() => removeTodoHandler}>
+        Prueba de hijos...
+      </Todos>
     </div>
   );
 };
